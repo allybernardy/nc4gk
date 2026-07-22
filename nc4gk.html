@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>New Clothes 4 God's Kids</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1A1A1A;--ink-soft:#3D3D3D;
+  --canvas:#F7F4EF;--canvas-warm:#EDE9E2;--canvas-mid:#E4DFD7;--white:#FFFFFF;
+  --crimson:#8B1A2E;--crimson-dk:#6B1222;
+  --rule:#D8D3CB;--muted:#8A8480;
+  --serif:"DM Serif Display",Georgia,serif;
+  --sans:"Inter",system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--canvas);color:var(--ink-soft);line-height:1.6}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:.9rem 3rem;background:rgba(26,26,26,.97);backdrop-filter:blur(12px)}
+.nav-logo{display:flex;align-items:center;gap:.8rem;cursor:pointer}
+.logo-mark{width:34px;height:34px;border-radius:50%;background:#282828;border:1px solid #363636;display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-weight:700;font-size:12px;color:#fff;flex-shrink:0}
+.lc{color:var(--crimson)}
+.nav-name{display:flex;flex-direction:column}
+.nav-name-main{font-weight:600;font-size:.85rem;color:#fff;letter-spacing:.05em}
+.nav-name-sub{font-size:.54rem;font-weight:300;color:rgba(255,255,255,.3);letter-spacing:.15em;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:1.75rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.72rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;transition:color .2s;cursor:pointer}
+.nav-links a:hover,.nav-links a.active{color:#fff}
+.nav-donate{background:var(--crimson)!important;color:#fff!important;padding:.45rem 1.1rem;border-radius:2px}
+.page{display:none}.page.active{display:block}
+.btn{display:inline-flex;align-items:center;cursor:pointer;border:none;font-family:var(--sans);font-weight:600;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;border-radius:2px;padding:.78rem 1.65rem;text-decoration:none;transition:all .2s}
+.btn-crimson{background:var(--crimson);color:#fff}.btn-crimson:hover{background:var(--crimson-dk)}
+.btn-outline-dark{border:1.5px solid var(--ink);color:var(--ink);background:none}.btn-outline-dark:hover{background:var(--ink);color:var(--canvas)}
+.btn-outline-crimson{border:1.5px solid var(--crimson);color:var(--crimson);background:none}.btn-outline-crimson:hover{background:var(--crimson);color:#fff}
+.btn-outline-light{border:1.5px solid rgba(255,255,255,.35);color:rgba(255,255,255,.85);background:none}.btn-outline-light:hover{border-color:#fff;color:#fff}
+.hero{background:var(--ink);padding-top:60px}
+.hero-img{width:100%;display:block;max-height:68vh;object-fit:cover;object-position:center top}
+.hero-bar{background:var(--ink);padding:2.5rem 3rem 3rem}
+.hero-bar-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hero-eyebrow{font-size:.65rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1rem;display:flex;align-items:center;gap:.65rem}
+.hero-eyebrow::before{content:"";display:block;width:1.5rem;height:1px;background:rgba(255,255,255,.35)}
+.hero-h1{font-family:var(--serif);font-size:clamp(2rem,3.2vw,3rem);color:#fff;line-height:1.1;margin-bottom:.6rem}
+.hero-h1 em{font-style:italic;color:rgba(255,255,255,.45)}
+.hero-tagline{font-size:.65rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.32)}
+.hero-sub{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.85;font-weight:300;margin-bottom:1.75rem}
+.hero-actions{display:flex;gap:.85rem;flex-wrap:wrap}
+.stat-bar{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:2rem 3rem;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0}
+.stat-item{text-align:center;padding:0 2.75rem;border-right:1px solid rgba(255,255,255,.08)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:var(--serif);font-size:2.2rem;color:#fff;line-height:1;display:block}
+.stat-acc{color:rgba(255,255,255,.55)}
+.stat-lbl{font-size:.58rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:.3rem;display:block}
+.stat-volunteer{padding:1rem 1.75rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:2px;margin-top:1.5rem;width:100%;max-width:400px;text-align:center;margin-left:auto;margin-right:auto}
+.stat-volunteer p{font-size:.75rem;color:rgba(255,255,255,.82);line-height:1.65;font-weight:300}
+.stat-volunteer strong{color:#fff;font-weight:700}
+.section{padding:5rem 3rem}.si{max-width:1080px;margin:0 auto}
+.s-dark{background:var(--ink);padding:5rem 3rem}
+.s-warm{background:var(--canvas-warm);padding:5rem 3rem;border-top:1px solid var(--rule)}
+.s-mid{background:var(--canvas-mid);padding:5rem 3rem;border-top:1px solid var(--rule)}
+.s-white{background:var(--white);padding:5rem 3rem;border-top:1px solid var(--rule)}
+.ey{font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--crimson);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.ey::before{content:"";display:block;width:1.2rem;height:1px;background:var(--crimson)}
+.ey-lt{color:rgba(255,255,255,.4)}.ey-lt::before{background:rgba(255,255,255,.2)}
+.ey-center{justify-content:center}
+.h2{font-family:var(--serif);font-size:clamp(1.8rem,2.8vw,2.4rem);color:var(--ink);line-height:1.18;margin-bottom:1.2rem}
+.h2-lt{color:#fff}
+.body{font-size:.9rem;color:var(--ink-soft);line-height:1.92;margin-bottom:1rem;font-weight:300}
+.body-lt{color:rgba(255,255,255,.62)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.mission-img{width:100%;height:440px;object-fit:cover;border-radius:2px}
+.pull-quote{border-left:3px solid var(--crimson);padding-left:1.2rem;margin:1.75rem 0;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);line-height:1.7}
+.pull-quote cite{display:block;font-family:var(--sans);font-style:normal;font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.4rem}
+.video-break{position:relative;height:440px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.vb-bg{position:absolute;inset:0;background-image:url('/images/video-break.jpg');background-size:cover;background-position:center 40%}
+.vb-bg::after{content:"";position:absolute;inset:0;background:rgba(15,15,15,.62)}
+.vb-inner{position:relative;z-index:1;text-align:center;padding:0 2rem}
+.vb-lbl{font-size:.62rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:.6rem}
+.vb-title{font-family:var(--serif);font-size:clamp(1.5rem,2.5vw,2rem);color:#fff;margin-bottom:1.5rem;line-height:1.3}
+.play-btn{width:68px;height:68px;border:2px solid rgba(255,255,255,.45);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;cursor:pointer;transition:all .25s}
+.play-btn:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.vb-note{font-size:.6rem;color:rgba(255,255,255,.22)}
+.context-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:center}
+.ctx-stats{display:flex;flex-direction:column;gap:1.5rem}
+.ctx-stat{display:flex;gap:1.25rem;align-items:flex-start;padding-bottom:1.5rem;border-bottom:1px solid var(--rule)}
+.ctx-stat:last-child{border-bottom:none;padding-bottom:0}
+.ctx-num{font-family:var(--serif);font-size:2.4rem;color:var(--crimson);line-height:1;flex-shrink:0;min-width:95px}
+.ctx-text h4{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:.2rem}
+.ctx-text p{font-size:.82rem;color:var(--muted);line-height:1.6;font-weight:300}
+.carousel-section{background:var(--ink);padding:3.5rem 0;overflow:hidden}
+.carousel-header{padding:0 3rem;margin-bottom:1.5rem}
+.carousel-label{font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.carousel-track-wrap{overflow:hidden;width:100%}
+@keyframes cs-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.carousel-track{display:flex;gap:1.5rem;width:max-content;animation:cs-scroll 36s linear infinite;padding-left:3rem}
+.carousel-track:hover{animation-play-state:paused}
+.cs-card{flex:0 0 360px;border-radius:3px;overflow:hidden}
+.cs-img{height:280px;background-size:cover;background-position:center;position:relative}
+.cs-overlay{position:absolute;inset:0;background:rgba(10,10,10,.52)}
+.cs-caption{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem 2rem;text-align:center}
+.cs-verse{font-family:var(--serif);font-style:italic;font-size:1rem;color:#fff;line-height:1.6;margin-bottom:.6rem}
+.cs-ref{font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.logo-float-grid{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2.5rem 5rem;padding:2rem 0;margin-bottom:2.5rem}
+.logo-float-home{gap:1.5rem 3rem;padding:1rem 0;margin-bottom:.75rem}
+.lf-item{display:flex;align-items:center;justify-content:center}
+.lf-item img{height:64px;width:auto;max-width:200px;object-fit:contain;mix-blend-mode:multiply;filter:grayscale(100%);opacity:.6;transition:all .3s}
+.lf-item:hover img{filter:grayscale(0%);opacity:1}
+.lf-item img[alt="Spectra"],.lf-item img[alt="Troy Lee"],.lf-item img[alt="Vuori"]{height:80px;max-width:220px;opacity:.75}
+.logo-float-home .lf-item img{height:38px;max-width:120px;opacity:.5}
+.accept-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:2.75rem}
+.accept-card{background:var(--canvas-warm);border-radius:2px;padding:1.5rem;border-top:2px solid var(--crimson)}
+.accept-card h4{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--crimson);margin-bottom:.4rem}
+.accept-card p{font-size:.8rem;color:var(--muted);line-height:1.75;font-weight:300}
+.brand-intro{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--rule)}
+.inv-cta{background:var(--ink);border-radius:2px;padding:2.25rem 2.75rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
+.inv-cta h3{font-family:var(--serif);font-size:1.3rem;color:#fff;margin-bottom:.4rem}
+.inv-cta p{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.7;font-weight:300}
+.testimonial{background:var(--canvas-warm);border-radius:3px;padding:2.5rem 3rem;border-left:4px solid var(--crimson);margin:2.5rem 0}
+.testimonial blockquote{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--ink);line-height:1.7;margin-bottom:.85rem}
+.testimonial-attr{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.how-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:4rem}
+.steps{display:grid;grid-template-columns:repeat(4,1fr)}
+.step{padding:2rem 2rem 2rem 0;border-right:1px solid var(--rule);position:relative;overflow:hidden}
+.step:last-child{border-right:none;padding-right:0;padding-left:2rem}
+.step:nth-child(2),.step:nth-child(3){padding-left:2rem}
+.step-mk{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
+.step-num{font-family:var(--serif);font-size:1.5rem;color:var(--crimson);opacity:.35;line-height:1;font-weight:400}
+.cx{width:18px;height:18px;position:relative;flex-shrink:0}
+.cx::before{content:"";position:absolute;width:2px;height:100%;background:var(--crimson);left:50%;transform:translateX(-50%);border-radius:1px}
+.cx::after{content:"";position:absolute;width:100%;height:2px;background:var(--crimson);top:50%;transform:translateY(-50%);border-radius:1px}
+.step h3{font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.55rem}
+.step p{font-size:.8rem;color:var(--muted);line-height:1.85;font-weight:300}
+.step-note{display:inline-block;margin-top:.6rem;font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--crimson);border-top:1px solid rgba(139,26,46,.2);padding-top:.5rem}
+.step-asterisk{font-size:.62rem;color:var(--muted);margin-top:.4rem;font-style:italic}
+.dist-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.75rem}
+.dist-card{background:var(--white);padding:1.75rem 1.75rem 1.75rem 2rem;border-left:3px solid var(--crimson);border-radius:0 2px 2px 0}
+.dist-card h3{font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:.4rem}
+.dist-card p{font-size:.8rem;color:var(--muted);line-height:1.8;font-weight:300}
+.suggest-strip{background:var(--white);border:1px solid var(--rule);border-radius:2px;padding:2rem 2.5rem;margin-bottom:1.5rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
+.suggest-strip h3{font-family:var(--serif);font-size:1.1rem;color:var(--ink);margin-bottom:.3rem}
+.suggest-strip p{font-size:.8rem;color:var(--muted);line-height:1.7;font-weight:300}
+.guarantee{background:var(--ink);padding:1.75rem 2.25rem;border-radius:2px;display:flex;gap:1.25rem;align-items:flex-start}
+.g-icon{width:24px;height:24px;flex-shrink:0;position:relative;margin-top:3px}
+.g-icon::before{content:"";position:absolute;width:2px;height:100%;background:var(--crimson);left:50%;transform:translateX(-50%);border-radius:1px}
+.g-icon::after{content:"";position:absolute;width:100%;height:2px;background:var(--crimson);top:50%;transform:translateY(-50%);border-radius:1px}
+.guarantee-text p{font-size:.82rem;color:rgba(255,255,255,.65);line-height:1.85;font-weight:300}
+.guarantee-text strong{color:#fff;font-weight:600}
+.guarantee-legal{font-size:.72rem;color:var(--muted);margin-top:1rem;font-style:italic;line-height:1.7}
+.impact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.impact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.06)}
+.impact-cell{background:var(--ink);padding:2.25rem 1.75rem}
+.imp-big{font-family:var(--serif);font-size:2.8rem;color:#fff;line-height:1;display:block;margin-bottom:.3rem}
+.imp-sm{font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);display:block}
+.budget-box{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:2px;padding:1.25rem 1.5rem;margin-top:1.5rem}
+.budget-box p{font-size:.82rem;color:rgba(255,255,255,.85);line-height:1.7;font-weight:300}
+.budget-box strong{color:#fff;font-weight:700}
+.donate-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.donate-card{background:var(--white);border:1px solid var(--rule);border-radius:2px;padding:2rem 1.5rem;transition:border-color .2s}
+.donate-card:hover{border-color:var(--crimson)}
+.dc-x{width:28px;height:28px;position:relative;margin-bottom:1.1rem}
+.dc-x::before{content:"";position:absolute;width:2px;height:100%;background:var(--crimson);left:50%;transform:translateX(-50%);border-radius:1px}
+.dc-x::after{content:"";position:absolute;width:100%;height:2px;background:var(--crimson);top:50%;transform:translateY(-50%);border-radius:1px}
+.donate-card h3{font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.45rem}
+.donate-card p{font-size:.78rem;color:var(--muted);line-height:1.75;margin-bottom:1.4rem;font-weight:300}
+.page-hero{padding-top:60px;background:var(--ink);min-height:200px;display:flex;align-items:flex-end}
+.phi{padding:2rem 3rem;max-width:1080px;margin:0 auto;width:100%}
+.events-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem}
+.event-card{background:var(--white);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.ec-hd{background:var(--ink);padding:1.65rem 2rem}
+.ec-badge{font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--crimson);margin-bottom:.55rem;display:block}
+.ec-hd h3{font-family:var(--serif);font-size:1.3rem;color:#fff}
+.ec-bd{padding:1.5rem 2rem 1.75rem}
+.event-det{font-size:.8rem;color:var(--muted);margin-bottom:.55rem;font-weight:300;line-height:1.6}
+.event-det strong{color:var(--ink);font-weight:600;display:inline-block;min-width:68px}
+.event-status{display:inline-block;margin-top:.7rem;font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(139,26,46,.6);border:1px solid rgba(139,26,46,.2);padding:.25rem .75rem;border-radius:1px}
+.field-note{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:2px;overflow:hidden;margin-bottom:2rem;border:1px solid var(--rule);background:var(--white)}
+.field-note.reverse{direction:rtl}.field-note.reverse>*{direction:ltr}
+.fn-img{height:320px;object-fit:cover;width:100%}
+.fn-body{padding:2.5rem 2.75rem;display:flex;flex-direction:column;justify-content:center}
+.fn-tag{font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--crimson);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.fn-tag::before{content:"";display:block;width:1rem;height:1px;background:var(--crimson)}
+.fn-date{font-size:.65rem;color:var(--muted);font-weight:300;margin-bottom:.5rem}
+.fn-title{font-family:var(--serif);font-size:1.4rem;color:var(--ink);line-height:1.25;margin-bottom:.85rem}
+.fn-text{font-size:.85rem;color:var(--muted);line-height:1.85;font-weight:300;margin-bottom:1.25rem}
+.fn-placeholder{font-size:.72rem;color:rgba(139,26,46,.4);font-style:italic;border-top:1px solid var(--rule);padding-top:.75rem}
+.newsletter-signup{background:var(--ink);border-radius:2px;padding:2.5rem 3rem;margin-top:3rem;text-align:center}
+.newsletter-signup h3{font-family:var(--serif);font-size:1.3rem;color:#fff;margin-bottom:.5rem}
+.newsletter-signup p{font-size:.85rem;color:rgba(255,255,255,.55);margin-bottom:1.5rem;font-weight:300}
+.newsletter-form{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.newsletter-form input{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:2px;padding:.78rem 1.25rem;font-size:.86rem;font-family:var(--sans);color:#fff;outline:none;min-width:280px;transition:border-color .2s}
+.newsletter-form input::placeholder{color:rgba(255,255,255,.35)}
+.newsletter-form input:focus{border-color:rgba(255,255,255,.45)}
+.faq-item{padding:1.5rem 0;border-bottom:1px solid var(--rule)}
+.faq-item:last-of-type{border-bottom:none;padding-bottom:0}
+.faq-q{font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:.5rem}
+.faq-a{font-size:.88rem;color:var(--muted);line-height:1.85;font-weight:300}
+.form-notice{background:rgba(139,26,46,.05);border:1px solid rgba(139,26,46,.14);border-radius:2px;padding:1.1rem 1.6rem;margin-bottom:2rem}
+.form-notice p{font-size:.82rem;color:var(--ink-soft);line-height:1.8;font-weight:300}
+.form-notice strong{color:var(--crimson);font-weight:600}
+.form-success{display:none;background:rgba(0,100,50,.05);border:1px solid rgba(0,100,50,.18);border-radius:2px;padding:2rem;text-align:center;margin-bottom:1.5rem}
+.form-success h3{font-family:var(--serif);font-size:1.25rem;color:#1a5c35;margin-bottom:.4rem}
+.form-success p{font-size:.85rem;color:#2d7a4a;font-weight:300}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:1.35rem}
+.fg{display:flex;flex-direction:column;gap:.35rem}
+.fg.full{grid-column:1/-1}
+.fg label{font-size:.64rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.fg input,.fg select,.fg textarea{background:var(--white);border:1px solid var(--rule);border-radius:2px;padding:.7rem .9rem;font-size:.86rem;font-family:var(--sans);color:var(--ink-soft);transition:border-color .2s;outline:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--crimson)}
+.fg textarea{resize:vertical;min-height:100px}
+footer{background:#0F0F0F;border-top:1px solid rgba(255,255,255,.04)}
+.footer-top{padding:3rem 3rem 2rem;max-width:1080px;margin:0 auto}
+.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:3rem}
+.footer-col{display:flex;flex-direction:column;gap:.55rem}
+.footer-col-head{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.5rem}
+.footer-col a{font-size:.78rem;color:rgba(255,255,255,.3);text-decoration:none;cursor:pointer;transition:color .2s;font-weight:300;background:none;border:none;text-align:left;padding:0;font-family:var(--sans)}
+.footer-col a:hover{color:rgba(255,255,255,.75)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding:1.75rem 3rem}
+.footer-bottom-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
+.footer-org{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.04em;display:block}
+.footer-legal{font-size:.6rem;color:rgba(255,255,255,.18);font-weight:300;display:block;margin-top:.15rem}
+.footer-mission{font-size:.58rem;color:rgba(255,255,255,.12);max-width:260px;line-height:1.7;font-weight:300;text-transform:uppercase;letter-spacing:.06em;text-align:center}
+.footer-social{display:flex;gap:.6rem}
+.social-btn{width:30px;height:30px;border:1px solid rgba(255,255,255,.1);border-radius:2px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.3);text-decoration:none;font-size:.65rem;font-weight:600;transition:all .2s}
+.social-btn:hover{border-color:rgba(255,255,255,.35);color:#fff}
+@media(max-width:960px){
+  nav{padding:.85rem 1.25rem}.nav-links{display:none}
+  .hero-bar-inner{grid-template-columns:1fr;gap:1.5rem}
+  .hero-bar{padding:2rem 1.25rem}
+  .stat-bar{flex-wrap:wrap;padding:1.75rem 1.25rem}
+  .stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);padding:1rem .75rem;width:48%}
+  .stat-volunteer{margin:0.5rem auto 0;width:100%}
+  .section,.s-dark,.s-warm,.s-mid,.s-white{padding:3.5rem 1.25rem}
+  .two-col,.context-grid,.impact-wrap,.brand-intro,.dist-grid,.events-grid,.fgrid,.donate-grid,.inv-cta,.suggest-strip,.how-header,.field-note{grid-template-columns:1fr;gap:2rem}
+  .field-note.reverse{direction:ltr}
+  .fn-img{height:250px}
+  .steps{grid-template-columns:1fr}
+  .step,.step:nth-child(2),.step:nth-child(3),.step:last-child{border-right:none;border-bottom:1px solid var(--rule);padding:1.75rem 0}
+  .accept-row{grid-template-columns:1fr}
+  .logo-float-grid{gap:1.25rem 2rem}
+  .lf-item img{height:40px}
+  .footer-cols{grid-template-columns:1fr 1fr;gap:2rem}
+  .footer-top,.footer-bottom{padding:2rem 1.25rem}
+  .footer-bottom-inner{flex-direction:column;align-items:flex-start}
+  .footer-mission{text-align:left}
+  .phi{padding:1.75rem 1.25rem}
+  .carousel-track{padding-left:1.25rem}
+  .cs-card{flex:0 0 280px}
+  .newsletter-form input{min-width:100%;width:100%}
+  .newsletter-form{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">
+    <div class="logo-mark">4<span class="lc">+</span></div>
+    <div class="nav-name"><span class="nav-name-main">NC4GK</span><span class="nav-name-sub">New Clothes · God's Kids</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a id="nav-home" onclick="showPage('home')">Home</a></li>
+    <li><a id="nav-story" onclick="showPage('story')">Our Story</a></li>
+    <li><a id="nav-partners" onclick="showPage('partners')">Partners</a></li>
+    <li><a id="nav-events" onclick="showPage('events')">Events</a></li>
+    <li><a id="nav-fieldnotes" onclick="showPage('fieldnotes')">Field Notes</a></li>
+    <li><a id="nav-form" onclick="showPage('form')" class="nav-donate">Donate Inventory</a></li>
+  </ul>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <section class="hero">
+    <img src="/images/home-hero.jpg" class="hero-img" alt="Hundreds of families lined around the block at the Salvation Army Youth and Community Center, South Central Los Angeles"/>
+    <div class="hero-bar">
+      <div class="hero-bar-inner">
+        <div>
+          <div class="hero-eyebrow">Serving Southern California since 2014</div>
+          <h1 class="hero-h1">New clothes.<br>Real dignity.<br><em>God's love in action.</em></h1>
+          <p class="hero-tagline">Nothing wasted. Everything given.</p>
+        </div>
+        <div>
+          <p class="hero-sub">NC4GK connects Southern California brands with families in genuine need, turning surplus inventory into dignity one piece of clothing at a time.</p>
+          <div class="hero-actions">
+            <button class="btn btn-crimson" onclick="showPage('form')">Donate Your Inventory</button>
+            <button class="btn btn-outline-light" onclick="showPage('story')">Our Story</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stat-bar">
+    <div class="stat-item"><span class="stat-num">$17<span class="stat-acc">M+</span></span><span class="stat-lbl">Clothing Distributed</span></div>
+    <div class="stat-item"><span class="stat-num">538<span class="stat-acc">K+</span></span><span class="stat-lbl">Pieces of Clothing</span></div>
+    <div class="stat-item"><span class="stat-num">193<span class="stat-acc">+</span></span><span class="stat-lbl">Gifts per $100</span></div>
+    <div class="stat-item"><span class="stat-num">100<span class="stat-acc">%</span></span><span class="stat-lbl">No Resale. Ever.</span></div>
+    <div class="stat-volunteer"><p><strong>All volunteer-run.</strong> Less than $25,000 per year in operating costs. Every dollar goes directly to getting clothes where they belong.</p></div>
+  </div>
+
+  <section class="section">
+    <div class="si">
+      <div class="two-col">
+        <div>
+          <div class="ey">Our Mission</div>
+          <h2 class="h2">Where surplus finds its purpose</h2>
+          <p class="body">Every season, apparel brands are left with inventory that cannot move. Surplus runs, cosmetic irregulars, samples that never shipped. Putting it into the marketplace means competing with their own customers. Discarding it means waste. NC4GK offers a third way.</p>
+          <p class="body">Across Southern California, millions of families live in genuine need. NC4GK exists at the intersection of these two realities, gathering what brands cannot use and delivering it, through verified Christian partners, to the families who need it most.</p>
+          <div class="pull-quote">All product is given. No product is ever sold.<cite>The NC4GK Promise</cite></div>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem">
+            <button class="btn btn-outline-dark" onclick="showPage('story')">Read Our Story</button>
+            <button class="btn btn-crimson" onclick="showPage('form')">Donate Inventory</button>
+          </div>
+        </div>
+        <img src="/images/home-mission.jpg" alt="Two children at an NC4GK distribution" class="mission-img"/>
+      </div>
+    </div>
+  </section>
+
+  <div class="video-break">
+    <div class="vb-bg" style="display:none"></div>
+    <video style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" controls>
+      <source src="/videos/nc4gk-aerial.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div style="position:absolute;inset:0;background:rgba(15,15,15,.3)"></div>
+  </div>
+
+  <section class="s-white">
+    <div class="si">
+      <div class="context-grid">
+        <div>
+          <div class="ey">The Need</div>
+          <h2 class="h2">Southern California is one of the wealthiest places on earth. The need is still extraordinary.</h2>
+          <p class="body">California leads the nation in poverty when accounting for the true cost of living. In Los Angeles County, nearly one in three young children lives below the poverty line. NC4GK exists to close the gap between surplus and need.</p>
+          <p style="font-size:.67rem;color:var(--muted);font-style:italic">Sources: California Budget and Policy Center (2024); U.S. Census Bureau, Supplemental Poverty Measure; Public Policy Institute of California</p>
+        </div>
+        <div class="ctx-stats">
+          <div class="ctx-stat"><span class="ctx-num">18.6%</span><div class="ctx-text"><h4>California child poverty rate</h4><p>The highest in the nation when accounting for cost of living. (U.S. Census, 2024 SPM)</p></div></div>
+          <div class="ctx-stat"><span class="ctx-num">~30%</span><div class="ctx-text"><h4>Young children in poverty in LA County</h4><p>Nearly 1 in 3 children under 5 in Los Angeles County live below the poverty line. (PPIC)</p></div></div>
+          <div class="ctx-stat"><span class="ctx-num">7M+</span><div class="ctx-text"><h4>Californians living in poverty in 2024</h4><p>More than the combined populations of LA, San Diego, San Jose, and San Francisco. (U.S. Census, 2024 SPM)</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="carousel-section">
+    <div class="carousel-header"><span class="carousel-label">In Scripture and In Action</span></div>
+    <div class="carousel-track-wrap">
+      <div class="carousel-track">
+<div class="cs-card"><div class="cs-img" style="background-image:url('/images/carousel-1.jpg')"><div class="cs-overlay"></div><div class="cs-caption"><p class="cs-verse">&#8220;Rejoice with those who rejoice, weep with those who weep.&#8221;</p><span class="cs-ref">&#8212; Romans 12:15</span></div></div></div>
+<div class="cs-card"><div class="cs-img" style="background-image:url('/images/carousel-2.jpg')"><div class="cs-overlay"></div><div class="cs-caption"><p class="cs-verse">&#8220;For I was hungry and you gave me food, I was a stranger and you welcomed me.&#8221;</p><span class="cs-ref">&#8212; Matthew 25:35</span></div></div></div>
+<div class="cs-card"><div class="cs-img" style="background-image:url('/images/carousel-3.jpg')"><div class="cs-overlay"></div><div class="cs-caption"><p class="cs-verse">&#8220;Instead, be kind and merciful, and forgive others, just as God forgave you because of Christ.&#8221;</p><span class="cs-ref">&#8212; Ephesians 4:32</span></div></div></div>
+<div class="cs-card"><div class="cs-img" style="background-image:url('/images/carousel-4.jpg')"><div class="cs-overlay"></div><div class="cs-caption"><p class="cs-verse">&#8220;The Lord is close to the brokenhearted and saves those who are crushed in spirit.&#8221;</p><span class="cs-ref">&#8212; Psalm 34:18</span></div></div></div>
+<div class="cs-card"><div class="cs-img" style="background-image:url('/images/carousel-5.jpg')"><div class="cs-overlay"></div><div class="cs-caption"><p class="cs-verse">&#8220;Let us not love with words or speech but with actions and in truth.&#8221;</p><span class="cs-ref">&#8212; 1 John 3:18</span></div></div></div>
+<div class="cs-card"><div class="cs-img" style="background-image:url('/images/carousel-1.jpg')"><div class="cs-overlay"></div><div class="cs-caption"><p class="cs-verse">&#8220;Rejoice with those who rejoice, weep with those who weep.&#8221;</p><span class="cs-ref">&#8212; Romans 12:15</span></div></div></div>
+<div class="cs-card"><div class="cs-img" style="background-image:url('/images/carousel-2.jpg')"><div class="cs-overlay"></div><div class="cs-caption"><p class="cs-verse">&#8220;For I was hungry and you gave me food, I was a stranger and you welcomed me.&#8221;</p><span class="cs-ref">&#8212; Matthew 25:35</span></div></div></div>
+<div class="cs-card"><div class="cs-img" style="background-image:url('/images/carousel-3.jpg')"><div class="cs-overlay"></div><div class="cs-caption"><p class="cs-verse">&#8220;Instead, be kind and merciful, and forgive others, just as God forgave you because of Christ.&#8221;</p><span class="cs-ref">&#8212; Ephesians 4:32</span></div></div></div>
+<div class="cs-card"><div class="cs-img" style="background-image:url('/images/carousel-4.jpg')"><div class="cs-overlay"></div><div class="cs-caption"><p class="cs-verse">&#8220;The Lord is close to the brokenhearted and saves those who are crushed in spirit.&#8221;</p><span class="cs-ref">&#8212; Psalm 34:18</span></div></div></div>
+<div class="cs-card"><div class="cs-img" style="background-image:url('/images/carousel-5.jpg')"><div class="cs-overlay"></div><div class="cs-caption"><p class="cs-verse">&#8220;Let us not love with words or speech but with actions and in truth.&#8221;</p><span class="cs-ref">&#8212; 1 John 3:18</span></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="s-white">
+    <div class="si">
+      <div style="text-align:center;max-width:560px;margin:0 auto 3rem">
+        <div class="ey ey-center">Brand Partners</div>
+        <h2 class="h2">25+ brands trust NC4GK with their inventory</h2>
+        <p class="body">Some of the most respected names in action sports, outdoor, and lifestyle apparel, turning surplus into something that matters.</p>
+      </div>
+      <div class="logo-float-grid logo-float-home">
+  <div class="lf-item"><img src="/images/stussy.png" alt="Stussy"/></div>
+  <div class="lf-item"><img src="/images/aftco.png" alt="AFTCO"/></div>
+  <div class="lf-item"><img src="/images/bylt.png" alt="BYLT"/></div>
+  <div class="lf-item"><img src="/images/huk.png" alt="HUK"/></div>
+  <div class="lf-item"><img src="/images/obey.png" alt="Obey"/></div>
+  <div class="lf-item"><img src="/images/harry.png" alt="Harry Trading"/></div>
+  <div class="lf-item"><img src="/images/darkseas.png" alt="Dark Seas"/></div>
+  <div class="lf-item"><img src="/images/legends.png" alt="Legends Brand"/></div>
+  <div class="lf-item"><img src="/images/f4a.png" alt="Feather 4 Arrow"/></div>
+  <div class="lf-item"><img src="/images/trueclassic.png" alt="True Classic"/></div>
+  <div class="lf-item"><img src="/images/roark.png" alt="Roark"/></div>
+  <div class="lf-item"><img src="/images/vuori.png" alt="Vuori"/></div>
+  <div class="lf-item"><img src="/images/oneill.png" alt="O'Neill"/></div>
+  <div class="lf-item"><img src="/images/roxy.png" alt="Roxy"/></div>
+</div>
+      <div style="text-align:center"><button class="btn btn-crimson" onclick="showPage('partners')">See All Partners</button></div>
+    </div>
+  </section>
+
+  <section class="s-dark">
+    <div class="si">
+      <div style="text-align:center;max-width:480px;margin:0 auto 3.5rem">
+        <div class="ey ey-lt ey-center">Get Involved</div>
+        <h2 class="h2 h2-lt">Ready to make a <em style="font-style:italic;color:var(--crimson)">real</em> difference?</h2>
+        <p class="body body-lt">Inventory, financial support, storage space, or logistics. There is a place for you in this work.</p>
+      </div>
+      <div class="donate-grid">
+        <div class="donate-card"><div class="dc-x"></div><h3>Donate Inventory</h3><p>Surplus, irregulars, off-spec runs. New clothing, any quantity. We handle coordination and storage.</p><button class="btn btn-crimson" onclick="showPage('form')">Get Started</button></div>
+        <div class="donate-card"><div class="dc-x"></div><h3>Give Financially</h3><p>$100 puts 193 new items in a child's hands. Your money does not buy the clothes. It gets them there.</p><a href="https://nc4gk.substack.com/" class="btn btn-crimson">Donate Now</a></div>
+        <div class="donate-card"><div class="dc-x"></div><h3>Donate Storage</h3><p>We hold inventory until distribution. Warehouse or storage space in Southern California is a meaningful contribution.</p><button class="btn btn-outline-dark" onclick="showModal('storage-form')">Reach Out</button></div>
+        <div class="donate-card"><div class="dc-x"></div><h3>Donate Logistics</h3><p>Truck runs, delivery coordination, fulfillment support. If you move things for a living, we would love to talk.</p><button class="btn btn-outline-dark" onclick="showModal('logistics-form')">Reach Out</button></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- OUR STORY -->
+<div id="page-story" class="page">
+  <div class="page-hero"><div class="phi">
+    <div class="ey ey-lt">Our Story</div>
+    <h1 style="font-family:var(--serif);font-size:2.2rem;color:#fff;line-height:1.2;margin-bottom:0">Where surplus finds its purpose</h1>
+  </div></div>
+  <section class="section">
+    <div class="si">
+      <div class="two-col" style="margin-bottom:3rem">
+        <div>
+          <div class="ey">The Problem We Solve</div>
+          <h2 class="h2">Every season, brands are left with inventory they cannot move.</h2>
+          <p class="body">The apparel industry is built on margin, and surplus product threatens that margin the moment it hits the wrong channel. Overruns, cosmetic irregulars, off-spec runs, samples, end-of-season stock. Brands cannot put it into the marketplace without competing with their own customers. They cannot just throw it away. So it sits.</p>
+          <p class="body">Southern California is home to a remarkable concentration of apparel and action sports companies. And it is also home to some of the deepest pockets of poverty in the country. NC4GK was founded on one simple insight: these two realities could solve each other.</p>
+        </div>
+        <div>
+          <div class="ey">The Need We Meet</div>
+          <h2 class="h2">Families across Southern California are waiting for what brands cannot sell.</h2>
+          <p class="body">Families in shelters. Children in underserved communities across Santa Ana, Anaheim, Lancaster, Hollywood, Van Nuys, Riverside, and South-Central LA. The need is consistent, deep, and close to home. In moments of disaster, we show up there too.</p>
+          <p class="body">NC4GK coordinates with Salvation Army shelters, City Serve, and other verified Christian organizations to ensure every item gets to someone in genuine need. Not a discount bin, not a resale channel. Every item is a gift.</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;margin-bottom:2.5rem">
+        <img src="/images/story-1.jpg" alt="NC4GK distribution" style="width:100%;height:220px;object-fit:cover;border-radius:2px"/>
+        <img src="/images/story-2.jpg" alt="Family at NC4GK event" style="width:100%;height:220px;object-fit:cover;border-radius:2px"/>
+        <img src="/images/story-3.jpg" alt="NC4GK community" style="width:100%;height:220px;object-fit:cover;border-radius:2px"/>
+      </div>
+      <div class="testimonial">
+        <blockquote>"Since 2014 the Salvation Army has distributed new clothes to people in need with NC4GK. We greatly value and appreciate our partnership, serving together to make a difference in the lives of others."</blockquote>
+        <span class="testimonial-attr">Kevin White, Past Communications Director, Salvation Army Orange County</span>
+      </div>
+    </div>
+  </section>
+  <section class="s-warm">
+    <div class="si">
+      <div class="how-header">
+        <div><div class="ey">How It Works</div><h2 class="h2">Simple process.<br>Real impact.</h2></div>
+        <p class="body" style="align-self:end">Over a decade refining a system that is effortless for brand partners and ensures every item reaches the right hands.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-mk"><div class="cx"></div><span class="step-num">01</span></div><h3>Brand donates inventory</h3><p>Surplus, cosmetic irregulars, or off-spec runs collected from brand partners. We coordinate logistics so it is effortless on your end.</p></div>
+        <div class="step"><div class="step-mk"><div class="cx"></div><span class="step-num">02</span></div><h3>We intake and store</h3><p>Every item is received, sorted, and held until matched to the right distribution event. This is where the real operational work happens.</p><span class="step-note">Highest-cost step. Financial gifts help most here.</span></div>
+        <div class="step"><div class="step-mk"><div class="cx"></div><span class="step-num">03</span></div><h3>Distribution is coordinated</h3><p>We work with verified Christian partners to plan distribution, matching inventory to communities and families in genuine need, careful not to create dependency.</p></div>
+        <div class="step"><div class="step-mk"><div class="cx"></div><span class="step-num">04</span></div><h3>Clothes reach families</h3><p>Through trusted organizations, new clothing is placed directly in the hands of children and families, with a 100% no-resale guarantee at every step.*</p><span class="step-asterisk">* See the NC4GK Guarantee below.</span></div>
+      </div>
+    </div>
+  </section>
+  <section class="s-mid">
+    <div class="si">
+      <div class="ey">Distribution Partners</div>
+      <h2 class="h2">Where the clothes go</h2>
+      <p class="body" style="max-width:540px;margin-bottom:2.5rem">Every partner holds a Christian mission and a verified commitment to direct distribution, not resale. We distribute in ways that empower rather than create dependency.</p>
+      <div class="dist-grid">
+        <div class="dist-card"><h3>The Salvation Army</h3><p>Shelters and community centers across Santa Ana, Anaheim, City of Bell, Lancaster, Hollywood, Van Nuys, Cathedral City, Riverside, and South-Central LA. Serving veterans, the homeless, and families in crisis.</p></div>
+        <div class="dist-card"><h3>City Serve</h3><p>Disaster relief and community outreach. NC4GK has partnered with City Serve to reach Altadena fire victims, Lancaster Riverbed encampments, and other emergency situations across Southern California.</p></div>
+      </div>
+      <div class="suggest-strip">
+        <div><h3>Know a Christian organization or community we should serve?</h3><p>We work primarily in Southern California. If you know a faith-based organization, shelter, school, or neighborhood in our region that could benefit, we'd love to hear from you. For opportunities to open chapters or conduct one-time distributions elsewhere, let's discuss.</p></div>
+        <a href="mailto:info@nc4gk.org" class="btn btn-outline-crimson">Suggest a Community</a>
+      </div>
+      <div class="guarantee">
+        <div class="g-icon"></div>
+        <div class="guarantee-text">
+          <p><strong>The NC4GK Guarantee*:</strong> Every distribution partner is personally vetted and holds a Christian mission. All clothing goes directly to families in need, never to a resale channel. This is our promise to every brand that trusts us with their inventory.</p>
+        </div>
+      </div>
+      <p class="guarantee-legal">* While NC4GK personally vets every distribution partner and requires a commitment to direct, non-commercial distribution, we acknowledge that we cannot control the actions of individual recipients once clothing has been distributed.</p>
+    </div>
+  </section>
+  <section class="s-dark">
+    <div class="si">
+      <div class="impact-wrap">
+        <div>
+          <div class="ey ey-lt">By the Numbers</div>
+          <h2 class="h2 h2-lt">Over a decade of doing this right</h2>
+          <p class="body body-lt">Every number represents a real family, a real child, a real moment of dignity.</p>
+          <div class="budget-box">
+            <p><strong>Less than $25,000 per year in operating costs.</strong> NC4GK is entirely volunteer-run. Generous product donors and volunteers allow a tremendous return on every dollar donated.</p>
+          </div>
+          <button class="btn btn-crimson" onclick="showPage('form')" style="margin-top:1.5rem">Be Part of the Story</button>
+        </div>
+        <div class="impact-grid">
+          <div class="impact-cell" style="border-right:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)"><span class="imp-big">$17M+</span><span class="imp-sm">Clothing distributed</span></div>
+          <div class="impact-cell" style="border-bottom:1px solid rgba(255,255,255,.05)"><span class="imp-big">538K+</span><span class="imp-sm">Pieces of clothing</span></div>
+          <div class="impact-cell" style="border-right:1px solid rgba(255,255,255,.05)"><span class="imp-big">193+</span><span class="imp-sm">Gifts per $100</span></div>
+          <div class="impact-cell"><span class="imp-big">0%</span><span class="imp-sm">Resale. Ever.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PARTNERS -->
+<div id="page-partners" class="page">
+  <div class="page-hero"><div class="phi">
+    <div class="ey ey-lt">Brand Partners</div>
+    <h1 style="font-family:var(--serif);font-size:2.2rem;color:#fff;line-height:1.2;margin-bottom:.4rem">We help brands do good with what they cannot sell</h1>
+    <p style="font-size:.86rem;color:rgba(255,255,255,.4);font-weight:300;max-width:460px">Cosmetic irregulars, misprints, off-spec runs, surplus. We give it a verified home where it becomes a gift, not a liability.</p>
+  </div></div>
+  <section class="section" style="background:var(--white)">
+    <div class="si">
+      <img src="/images/partners-hero.jpg" alt="NC4GK inventory intake" style="width:100%;height:340px;object-fit:cover;object-position:center top;border-radius:2px;margin-bottom:3rem"/>
+      <div class="accept-row">
+        <div class="accept-card"><h4>Cosmetic Irregulars</h4><p>Misprints, stitching variances, colorway errors. Items that cannot go through retail without impacting brand perception.</p></div>
+        <div class="accept-card"><h4>Surplus Inventory</h4><p>Overruns, end-of-season stock, excess production that would otherwise sit in a warehouse or go to liquidation.</p></div>
+        <div class="accept-card"><h4>Off-Spec Goods</h4><p>Anything new and wearable that does not belong in your normal channels. We make sure it reaches someone who truly needs it.</p></div>
+      </div>
+      <div class="brand-intro">
+        <div><div class="ey">Current Partners</div><h2 class="h2">25+ brands.<br>One mission.</h2></div>
+        <div><p class="body">These companies have chosen to turn surplus inventory into something meaningful. We are proud to call them partners.</p></div>
+      </div>
+      <div class="logo-float-grid">
+  <div class="lf-item"><img src="/images/stussy.png" alt="Stussy"/></div>
+  <div class="lf-item"><img src="/images/aftco.png" alt="AFTCO"/></div>
+  <div class="lf-item"><img src="/images/bylt.png" alt="BYLT"/></div>
+  <div class="lf-item"><img src="/images/huk.png" alt="HUK"/></div>
+  <div class="lf-item"><img src="/images/obey.png" alt="Obey"/></div>
+  <div class="lf-item"><img src="/images/harry.png" alt="Harry Trading"/></div>
+  <div class="lf-item"><img src="/images/darkseas.png" alt="Dark Seas"/></div>
+  <div class="lf-item"><img src="/images/legends.png" alt="Legends Brand"/></div>
+  <div class="lf-item"><img src="/images/f4a.png" alt="Feather 4 Arrow"/></div>
+  <div class="lf-item"><img src="/images/trueclassic.png" alt="True Classic"/></div>
+  <div class="lf-item"><img src="/images/roark.png" alt="Roark"/></div>
+  <div class="lf-item"><img src="/images/vuori.png" alt="Vuori"/></div>
+  <div class="lf-item"><img src="/images/oneill.png" alt="O'Neill"/></div>
+  <div class="lf-item"><img src="/images/roxy.png" alt="Roxy"/></div>
+  <div class="lf-item"><img src="/images/quiksilver.png" alt="Quiksilver"/></div>
+  <div class="lf-item"><img src="/images/lamade.png" alt="LA Made"/></div>
+  <div class="lf-item"><img src="/images/spectra.png" alt="Spectra"/></div>
+  <div class="lf-item"><img src="/images/troy.png" alt="Troy Lee"/></div>
+  <div class="lf-item"><img src="/images/shelta.png" alt="Shelta"/></div>
+  <div class="lf-item"><img src="/images/kaialoha.png" alt="Kai Aloha"/></div>
+  <div class="lf-item"><img src="/images/cova.png" alt="Cova"/></div>
+</div>
+      <div class="inv-cta" style="margin-top:2.5rem">
+        <div><h3>Ready to put your inventory to work?</h3><p>Tell us what you have and we will walk you through the rest. Simple process, verified distribution, zero resale, ever.</p></div>
+        <button class="btn btn-crimson" onclick="showPage('form')" style="white-space:nowrap">Get in Touch</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- EVENTS -->
+<div id="page-events" class="page">
+  <div class="page-hero"><div class="phi">
+    <div class="ey ey-lt">Events</div>
+    <h1 style="font-family:var(--serif);font-size:2.2rem;color:#fff;line-height:1.2;margin-bottom:0">Where we distribute</h1>
+  </div></div>
+  <section class="section">
+    <div class="si">
+      <img src="/images/events-banner.jpg" alt="Families at NC4GK distribution" style="width:100%;height:300px;object-fit:cover;object-position:center 40%;border-radius:2px;margin-bottom:2.5rem"/>
+      <p class="body" style="max-width:560px;margin-bottom:3rem">NC4GK holds multiple distribution events throughout the year. Event frequency and scale adjust to the volume of inventory we receive. The more brands donate, the more communities we can serve.</p>
+      
+      <div style="margin-bottom:4rem">
+        <h2 class="h2" style="margin-bottom:1.75rem">Upcoming Events</h2>
+        <div style="display:flex;flex-direction:column;gap:1.25rem">
+          <div style="background:var(--white);border:1px solid var(--rule);border-radius:2px;padding:1.75rem 2rem;display:grid;grid-template-columns:120px 1fr;gap:2rem;align-items:center">
+            <div><p style="font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--crimson);margin-bottom:.3rem">August 2026</p><p style="font-size:1.05rem;font-weight:600;color:var(--ink)">Back-to-School</p></div>
+            <div><p style="font-size:.9rem;color:var(--ink-soft);line-height:1.7">New clothing for children and families ahead of the school year. Location and details coming soon.</p></div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--rule);border-radius:2px;padding:1.75rem 2rem;display:grid;grid-template-columns:120px 1fr;gap:2rem;align-items:center">
+            <div><p style="font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--crimson);margin-bottom:.3rem">Late November 2026</p><p style="font-size:1.05rem;font-weight:600;color:var(--ink)">Holiday Distribution</p></div>
+            <div><p style="font-size:.9rem;color:var(--ink-soft);line-height:1.7">Our largest annual event. New clothing, outerwear, and seasonal gifts for families. Location and details coming soon.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="h2" style="margin-bottom:1.75rem">Past Events</h2>
+        <div style="display:flex;flex-direction:column;gap:.75rem">
+          <div style="border-bottom:1px solid var(--rule);padding:1.25rem 0;display:grid;grid-template-columns:120px 1fr auto;gap:2rem;align-items:center">
+            <div><p style="font-size:.72rem;font-weight:600;color:var(--muted)">South Central LA</p><p style="font-size:.8rem;color:var(--muted)">2023</p></div>
+            <p style="font-size:.9rem;color:var(--ink-soft)">Back-to-School Distribution at Salvation Army Youth and Community Center</p>
+            <a href="https://nc4gk.substack.com/" target="_blank" style="font-size:.72rem;color:var(--crimson);text-decoration:none;font-weight:500;white-space:nowrap">Read story →</a>
+          </div>
+          <div style="border-bottom:1px solid var(--rule);padding:1.25rem 0;display:grid;grid-template-columns:120px 1fr;gap:2rem;align-items:center">
+            <div><p style="font-size:.72rem;font-weight:600;color:var(--muted)">Lancaster, CA</p><p style="font-size:.8rem;color:var(--muted)">2024</p></div>
+            <p style="font-size:.9rem;color:var(--ink-soft)">Community outreach and encampment distribution</p>
+          </div>
+          <div style="border-bottom:1px solid var(--rule);padding:1.25rem 0;display:grid;grid-template-columns:120px 1fr auto;gap:2rem;align-items:center">
+            <div><p style="font-size:.72rem;font-weight:600;color:var(--muted)">Altadena, CA</p><p style="font-size:.8rem;color:var(--muted)">2025</p></div>
+            <p style="font-size:.9rem;color:var(--ink-soft)">Disaster relief coordination with City Serve</p>
+            <a href="https://nc4gk.substack.com/" target="_blank" style="font-size:.72rem;color:var(--crimson);text-decoration:none;font-weight:500;white-space:nowrap">Read story →</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:3rem;padding:2rem 2.5rem;background:var(--canvas-warm);border-radius:2px;border:1px solid var(--rule)">
+        <h3 style="font-family:var(--serif);font-size:1.1rem;color:var(--ink);margin-bottom:.35rem">Know a community that needs us?</h3>
+        <p class="body" style="margin-bottom:1rem">We work primarily in Southern California. If you know a Christian organization in our region that could benefit, let us know. For opportunities to start a chapter or one-time distributions elsewhere, we're open to the conversation.</p>
+        <a href="mailto:info@nc4gk.org" class="btn btn-outline-crimson">Suggest a Community</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FIELD NOTES -->
+<div id="page-fieldnotes" class="page">
+  <div class="page-hero"><div class="phi">
+    <div class="ey ey-lt">Field Notes</div>
+    <h1 style="font-family:var(--serif);font-size:2.2rem;color:#fff;line-height:1.2;margin-bottom:.4rem">Updates, stories and dispatches from the work</h1>
+    <p style="font-size:.86rem;color:rgba(255,255,255,.38);font-weight:300;max-width:460px">Distribution recaps, community moments, event stories, and the people behind the mission.</p>
+  </div></div>
+  <section class="section">
+    <div class="si">
+      <div style="background:var(--canvas-warm);border:1px solid var(--rule);border-radius:2px;padding:2.5rem 3rem;text-align:center;margin-bottom:3rem">
+        <div class="ey ey-center">Coming Soon</div>
+        <h2 class="h2" style="margin-bottom:1rem">Field Notes are coming to Substack</h2>
+        <p class="body" style="max-width:480px;margin:0 auto 1.75rem">We are building our Field Notes newsletter on Substack. Stories, dispatches, and updates from the work will arrive there first.</p>
+        <a href="https://nc4gk.substack.com/" target="_blank" class="btn btn-crimson">Subscribe on Substack</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FORM -->
+<div id="page-form" class="page">
+  <div class="page-hero" style="min-height:260px;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background-image:url('/images/donate-hero.jpg');background-size:cover;background-position:center top;opacity:.2"></div>
+    <div class="phi" style="position:relative;z-index:1">
+      <div class="ey ey-lt">Donate Inventory</div>
+      <h1 style="font-family:var(--serif);font-size:2.2rem;color:#fff;line-height:1.2;margin-bottom:.4rem">Let's put your inventory to work</h1>
+      <p style="font-size:.85rem;color:rgba(255,255,255,.5);font-weight:300;max-width:420px">Tell us about what you have and we will be in touch within one week.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="si" style="max-width:680px">
+      <div class="form-notice"><p><strong>Please note:</strong> NC4GK is a B2B inventory partner. We work exclusively with brands and manufacturers donating new clothing in pallet or bulk quantities. For individual or used items, please connect with your local Salvation Army or thrift store. We appreciate your generosity either way.</p></div>
+      <div id="formSuccess" class="form-success"><h3>Thank you. We will be in touch within one week.</h3><p>Your inquiry has been sent to the NC4GK team. We will review and reach out within one week.</p></div>
+      <form id="inventoryForm" name="inventory-donation" method="POST" netlify onsubmit="handleSubmit(event)">
+        <div class="fgrid">
+          <div class="fg"><label>Your Name *</label><input type="text" name="name" required placeholder="Jane Smith"/></div>
+          <div class="fg"><label>Your Email *</label><input type="email" name="email" required placeholder="jane@brand.com"/></div>
+          <div class="fg"><label>Brand / Company Name *</label><input type="text" name="brand" required placeholder="Brand name"/></div>
+          <div class="fg"><label>Your Role / Title</label><input type="text" name="role" placeholder="e.g. VP Operations"/></div>
+          <div class="fg full"><label>Inventory Description *</label><textarea name="inventory_description" required placeholder="What are you donating? e.g. 200 units boardshorts, misprinted logo, new with tags, mixed sizes S through XL"></textarea></div>
+          <div class="fg full"><label>Reason for Offloading</label><textarea name="reason" placeholder="e.g. End-of-season overrun, colorway misprint, off-spec production run..." style="min-height:80px"></textarea></div>
+          <div class="fg"><label>City *</label><input type="text" name="city" required placeholder="City"/></div>
+          <div class="fg"><label>State *</label><select name="state" required><option value="">Select state</option><option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option><option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option></select></div>
+          <div class="fg full"><label>Approximate Volume *</label><input type="text" name="volume" required placeholder="e.g. 3 pallets (~500 units), 1,200 pieces, 4 cases"/></div>
+          <div class="fg full"><label>Anything else we should know?</label><textarea name="notes" placeholder="Timing, packaging details, questions..." style="min-height:80px"></textarea></div>
+        </div>
+        <div style="margin-top:1.75rem"><button type="submit" class="btn btn-crimson" style="width:100%;padding:1rem;font-size:.8rem;justify-content:center">Submit Inventory Inquiry</button></div>
+        <p style="margin-top:.8rem;font-size:.67rem;color:var(--muted);text-align:center">We will respond within one week. Your information goes directly to the NC4GK team.</p>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- FAQ -->
+<div id="page-faq" class="page">
+  <div class="page-hero"><div class="phi">
+    <div class="ey ey-lt">FAQ</div>
+    <h1 style="font-family:var(--serif);font-size:2.2rem;color:#fff;line-height:1.2;margin-bottom:0">Common questions</h1>
+  </div></div>
+  <section class="section">
+    <div class="si" style="max-width:760px">
+      <div class="faq-item"><h3 class="faq-q">What types of inventory do you accept?</h3><p class="faq-a">We accept new, unworn clothing and apparel in any quantity. This includes surplus inventory, cosmetic irregulars, misprints, off-spec production runs, samples, and end-of-season overruns. We do not accept used, worn, or individually donated items.</p></div>
+      <div class="faq-item"><h3 class="faq-q">What happens to the clothing after donation?</h3><p class="faq-a">We intake and store the inventory at our Southern California facility, then coordinate distribution through verified Christian partners including the Salvation Army and City Serve. Every item is given directly to families in need. No product is ever sold.</p></div>
+      <div class="faq-item"><h3 class="faq-q">Is my donation tax deductible?</h3><p class="faq-a">Yes. New Clothes 4 God's Kids, Inc. is a registered 501(c)(3) non-profit corporation (FEIN: 47-2263205). Inventory and cash donations are tax deductible to the extent permitted by law. We can provide documentation upon request.</p></div>
+      <div class="faq-item"><h3 class="faq-q">How do you guarantee clothing is not resold?</h3><p class="faq-a">Every distribution partner is personally vetted and must hold a Christian mission with a verified commitment to direct distribution. We do not work with any organization that operates resale channels.</p></div>
+      <div class="faq-item"><h3 class="faq-q">How long does the process take?</h3><p class="faq-a">After submitting an inquiry we typically respond within one week. Coordination timelines vary based on inventory volume and location, but we handle logistics and keep you informed throughout.</p></div>
+      <div class="faq-item"><h3 class="faq-q">Can we receive a donation receipt?</h3><p class="faq-a">Yes. We provide documentation for all inventory donations. Please mention this when you submit your inquiry and we will make sure the right paperwork is included.</p></div>
+      <div class="faq-item"><h3 class="faq-q">Do you accept small quantities or individual donations?</h3><p class="faq-a">NC4GK is a B2B partner working with brands and manufacturers. If you have individual or gently used items to donate, your local Salvation Army or thrift store is the right fit.</p></div>
+      <div class="faq-item"><h3 class="faq-q">How do I get started?</h3><p class="faq-a">Fill out the inventory donation form and we will be in touch within one week. We will walk you through the process, coordinate logistics, and ensure your inventory reaches families in genuine need.</p></div>
+      <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap">
+        <button class="btn btn-crimson" onclick="showPage('form')">Donate Inventory</button>
+        <a href="mailto:info@nc4gk.org" class="btn btn-outline-dark">Contact Us</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-cols">
+      <div class="footer-col">
+        <span class="footer-col-head">NC4GK</span>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('story')">Our Story</a>
+        <a onclick="showPage('fieldnotes')">Field Notes</a>
+        <a onclick="showPage('events')">Events</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-head">Partners</span>
+        <a onclick="showPage('form')">Donate Inventory</a>
+        <a onclick="showPage('partners')">Brand Partners</a>
+        <a onclick="showPage('story')">Distribution Partners</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-head">Connect</span>
+        <a href="mailto:info@nc4gk.org">Contact Us</a>
+        <a onclick="showPage('faq')">FAQ</a>
+        <a href="https://www.instagram.com/nc4gk/" target="_blank">Instagram</a>
+        <a href="https://www.facebook.com/nc4gk" target="_blank">Facebook</a>
+        <a href="https://www.linkedin.com/company/nc4gk/" target="_blank">LinkedIn</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-head">Give</span>
+        <a onclick="showPage('form')">Donate Inventory</a>
+        <a href="#">Financial Gift</a>
+        <a href="mailto:info@nc4gk.org">Donate Storage</a>
+        <a href="mailto:info@nc4gk.org">Donate Logistics</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <div>
+        <span class="footer-org">New Clothes 4 God's Kids, Inc.</span>
+        <span class="footer-legal">501(c)(3) Non-Profit Corporation · FEIN: 47-2263205 · Newport Beach, CA</span>
+      </div>
+      <p class="footer-mission">We exist to provide both gifts of God's love and gifts of new clothes to provide physical comfort for those in need</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/nc4gk/" class="social-btn" target="_blank">IG</a>
+        <a href="https://www.facebook.com/nc4gk" class="social-btn" target="_blank">FB</a>
+        <a href="https://www.linkedin.com/company/nc4gk/" class="social-btn" target="_blank">in</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- MODALS -->
+<div id="modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:400;backdrop-filter:blur(2px)" onclick="if(event.target===this) closeModal()"></div>
+
+<div id="storage-form" class="modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:401;background:var(--white);border-radius:3px;padding:2.5rem;max-width:480px;width:90%;max-height:85vh;overflow-y:auto">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+    <h2 class="h2" style="margin:0;font-size:1.3rem">Donate Storage Space</h2>
+    <button onclick="closeModal()" style="background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--ink-soft)">&times;</button>
+  </div>
+  <form name="storage-inquiry" method="POST" netlify style="display:flex;flex-direction:column;gap:1rem">
+    <div style="display:flex;flex-direction:column;gap:.3rem">
+      <label style="font-size:.64rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)">Your Name *</label>
+      <input type="text" name="name" required placeholder="Jane Smith" style="background:var(--canvas);border:1px solid var(--rule);border-radius:2px;padding:.7rem .9rem;font-size:.86rem;font-family:var(--sans);color:var(--ink-soft);outline:none"/>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:.3rem">
+      <label style="font-size:.64rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)">Your Email *</label>
+      <input type="email" name="email" required placeholder="jane@company.com" style="background:var(--canvas);border:1px solid var(--rule);border-radius:2px;padding:.7rem .9rem;font-size:.86rem;font-family:var(--sans);color:var(--ink-soft);outline:none"/>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:.3rem">
+      <label style="font-size:.64rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)">Space Available *</label>
+      <textarea name="space_details" required placeholder="Warehouse size, climate control, location, availability..." style="background:var(--canvas);border:1px solid var(--rule);border-radius:2px;padding:.7rem .9rem;font-size:.86rem;font-family:var(--sans);color:var(--ink-soft);outline:none;resize:vertical;min-height:80px"></textarea>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:.3rem">
+      <label style="font-size:.64rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)">Questions or Notes</label>
+      <textarea name="notes" placeholder="Anything else we should know?" style="background:var(--canvas);border:1px solid var(--rule);border-radius:2px;padding:.7rem .9rem;font-size:.86rem;font-family:var(--sans);color:var(--ink-soft);outline:none;resize:vertical;min-height:60px"></textarea>
+    </div>
+    <button type="submit" class="btn btn-crimson" style="width:100%;padding:.9rem;font-size:.8rem;justify-content:center;margin-top:.5rem">Send Inquiry</button>
+  </form>
+</div>
+
+<div id="logistics-form" class="modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:401;background:var(--white);border-radius:3px;padding:2.5rem;max-width:480px;width:90%;max-height:85vh;overflow-y:auto">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+    <h2 class="h2" style="margin:0;font-size:1.3rem">Donate Logistics Support</h2>
+    <button onclick="closeModal()" style="background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--ink-soft)">&times;</button>
+  </div>
+  <form name="logistics-inquiry" method="POST" netlify style="display:flex;flex-direction:column;gap:1rem">
+    <div style="display:flex;flex-direction:column;gap:.3rem">
+      <label style="font-size:.64rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)">Your Name *</label>
+      <input type="text" name="name" required placeholder="Jane Smith" style="background:var(--canvas);border:1px solid var(--rule);border-radius:2px;padding:.7rem .9rem;font-size:.86rem;font-family:var(--sans);color:var(--ink-soft);outline:none"/>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:.3rem">
+      <label style="font-size:.64rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)">Your Email *</label>
+      <input type="email" name="email" required placeholder="jane@company.com" style="background:var(--canvas);border:1px solid var(--rule);border-radius:2px;padding:.7rem .9rem;font-size:.86rem;font-family:var(--sans);color:var(--ink-soft);outline:none"/>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:.3rem">
+      <label style="font-size:.64rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)">What Can You Help With? *</label>
+      <textarea name="logistics_details" required placeholder="Truck availability, delivery routes, fulfillment capacity, etc..." style="background:var(--canvas);border:1px solid var(--rule);border-radius:2px;padding:.7rem .9rem;font-size:.86rem;font-family:var(--sans);color:var(--ink-soft);outline:none;resize:vertical;min-height:80px"></textarea>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:.3rem">
+      <label style="font-size:.64rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)">Questions or Notes</label>
+      <textarea name="notes" placeholder="Anything else we should know?" style="background:var(--canvas);border:1px solid var(--rule);border-radius:2px;padding:.7rem .9rem;font-size:.86rem;font-family:var(--sans);color:var(--ink-soft);outline:none;resize:vertical;min-height:60px"></textarea>
+    </div>
+    <button type="submit" class="btn btn-crimson" style="width:100%;padding:.9rem;font-size:.8rem;justify-content:center;margin-top:.5rem">Send Inquiry</button>
+  </form>
+</div>
+
+<script>
+function showModal(modalId) {
+  document.getElementById('modal-overlay').style.display='block';
+  document.getElementById(modalId).style.display='block';
+}
+function closeModal() {
+  document.getElementById('modal-overlay').style.display='none';
+  document.querySelectorAll('.modal').forEach(m => m.style.display='none');
+}
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const el = document.getElementById('nav-' + id);
+  if(el) el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('inventoryForm').style.display='none';
+  document.getElementById('formSuccess').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function handleNewsletter() {
+  const email = document.getElementById('nlEmail').value;
+  if(!email) return;
+  document.getElementById('nlEmail').style.display='none';
+  document.querySelector('.newsletter-form button').style.display='none';
+  document.getElementById('nlConfirm').style.display='block';
+}
+</script>
+</body>
+</html>
