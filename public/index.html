@@ -223,18 +223,17 @@ footer{background:#0F0F0F;border-top:1px solid rgba(255,255,255,.04)}
 .social-btn{width:30px;height:30px;border:1px solid rgba(255,255,255,.1);border-radius:2px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.3);text-decoration:none;font-size:.65rem;font-weight:600;transition:all .2s}
 .social-btn:hover{border-color:rgba(255,255,255,.35);color:#fff}
 @media(max-width:960px){
-  nav{padding:.85rem 1.25rem}.nav-links{display:none}
+  nav{padding:.85rem 1.25rem;display:flex;justify-content:space-between;align-items:center}.nav-hamburger{display:flex!important;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:0}.nav-hamburger span{width:24px;height:2px;background:#fff}.nav-links{display:none;position:absolute;top:60px;left:0;right:0;background:var(--ink);flex-direction:column;padding:1.5rem 1.25rem;gap:1rem;list-style:none}.nav-links.active{display:flex}.nav-links a{color:#fff;text-decoration:none;font-size:.9rem;cursor:pointer}
   .hero-bar-inner{grid-template-columns:1fr;gap:1.5rem}
   .hero-bar{padding:2rem 1.25rem}
   .stat-bar{flex-wrap:wrap;padding:1.75rem 1.25rem}
   .stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);padding:1rem .75rem;width:48%}
   .stat-volunteer{margin:0.5rem auto 0;width:100%}
-  .section,.s-dark,.s-warm,.s-mid,.s-white{padding:3.5rem 1.25rem}
+  .section,.s-dark,.s-warm,.s-mid,.s-white{padding:2rem 1.25rem}
   .two-col,.context-grid,.impact-wrap,.brand-intro,.dist-grid,.events-grid,.fgrid,.donate-grid,.inv-cta,.suggest-strip,.how-header,.field-note{grid-template-columns:1fr;gap:2rem}
   .field-note.reverse{direction:ltr}
   .fn-img{height:250px}
-  .steps{grid-template-columns:1fr}
-  .step,.step:nth-child(2),.step:nth-child(3),.step:last-child{border-right:none;border-bottom:1px solid var(--rule);padding:1.75rem 0}
+  .steps{grid-template-columns:1fr}.step{border:none;border-bottom:1px solid var(--rule);padding:1.5rem 0;text-align:left}.step:last-child{border-bottom:none}.step-mk{margin-bottom:1rem;margin-right:0}
   .accept-row{grid-template-columns:1fr}
   .logo-float-grid{gap:1.25rem 2rem}
   .lf-item img{height:40px}
@@ -243,7 +242,7 @@ footer{background:#0F0F0F;border-top:1px solid rgba(255,255,255,.04)}
   .footer-bottom-inner{flex-direction:column;align-items:flex-start}
   .footer-mission{text-align:left}
   .phi{padding:1.75rem 1.25rem}
-  .carousel-track{padding-left:1.25rem}
+  .carousel-track{padding-left:1.25rem;animation:cs-scroll 20s linear infinite!important}
   .cs-card{flex:0 0 280px}
   .newsletter-form input{min-width:100%;width:100%}
   .newsletter-form{flex-direction:column;align-items:center}
@@ -256,13 +255,18 @@ footer{background:#0F0F0F;border-top:1px solid rgba(255,255,255,.04)}
   <div class="nav-logo" onclick="showPage('home')">
     <img src="/images/nc4gk-logo.webp" alt="NC4GK" style="height:40px;width:auto;object-fit:contain"/>
   </div>
+  <button class="nav-hamburger" onclick="toggleMobileNav()" style="display:none">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
   <ul class="nav-links">
-    <li><a id="nav-home" onclick="showPage('home')">Home</a></li>
-    <li><a id="nav-story" onclick="showPage('story')">Our Story</a></li>
-    <li><a id="nav-partners" onclick="showPage('partners')">Partners</a></li>
-    <li><a id="nav-events" onclick="showPage('events')">Events</a></li>
-    <li><a id="nav-fieldnotes" onclick="showPage('fieldnotes')">Field Notes</a></li>
-    <li><a id="nav-form" onclick="showPage('form')" class="nav-donate">Donate Inventory</a></li>
+    <li><a id="nav-home" onclick="showPage('home');closeMobileNav()">Home</a></li>
+    <li><a id="nav-story" onclick="showPage('story');closeMobileNav()">Our Story</a></li>
+    <li><a id="nav-partners" onclick="showPage('partners');closeMobileNav()">Partners</a></li>
+    <li><a id="nav-events" onclick="showPage('events');closeMobileNav()">Events</a></li>
+    <li><a id="nav-fieldnotes" onclick="showPage('fieldnotes');closeMobileNav()">Field Notes</a></li>
+    <li><a id="nav-form" onclick="showPage('form');closeMobileNav()" class="nav-donate">Donate Inventory</a></li>
   </ul>
 </nav>
 
@@ -829,6 +833,14 @@ function showModal(modalId) {
 function closeModal() {
   document.getElementById('modal-overlay').style.display='none';
   document.querySelectorAll('.modal').forEach(m => m.style.display='none');
+}
+function toggleMobileNav() {
+  const navLinks = document.querySelector('.nav-links');
+  navLinks.classList.toggle('active');
+}
+function closeMobileNav() {
+  const navLinks = document.querySelector('.nav-links');
+  navLinks.classList.remove('active');
 }
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
