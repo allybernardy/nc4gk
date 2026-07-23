@@ -1,4 +1,4 @@
-=<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -368,7 +368,7 @@ footer{background:#0F0F0F;border-top:1px solid rgba(255,255,255,.04)}
         <p class="body">Some of the most respected names in action sports, outdoor, and lifestyle apparel, turning surplus into something that matters.</p>
       </div>
       <div class="logo-float-grid logo-float-home">
-  <div class="lf-item"><img src="/images/stussy.webp" alt="Stussy"/></div>
+  <div class="lf-item"><img src="/images/stussy.png" alt="Stussy"/></div>
   <div class="lf-item"><img src="/images/aftco.webp" alt="AFTCO"/></div>
   <div class="lf-item"><img src="/images/bylt.webp" alt="BYLT"/></div>
   <div class="lf-item"><img src="/images/huk.webp" alt="HUK"/></div>
@@ -379,7 +379,7 @@ footer{background:#0F0F0F;border-top:1px solid rgba(255,255,255,.04)}
   <div class="lf-item"><img src="/images/feather4arrow.jpeg" alt="Feather 4 Arrow"/></div>
   <div class="lf-item"><img src="/images/trueclassic.webp" alt="True Classic"/></div>
   <div class="lf-item"><img src="/images/roark.png" alt="Roark"/></div>
-  <div class="lf-item"><img src="/images/vuori.webp" alt="Vuori" style="height:80px;max-width:220px"/></div>
+  <div class="lf-item"><img src="/images/vuori.webp" alt="Vuori" style="height:160px;max-width:440px"/></div>
   <div class="lf-item"><img src="/images/oneill.png" alt="O'Neill"/></div>
   <div class="lf-item"><img src="/images/roxy.png" alt="Roxy"/></div>
 </div>
@@ -518,7 +518,7 @@ footer{background:#0F0F0F;border-top:1px solid rgba(255,255,255,.04)}
         <div><p class="body">These companies have chosen to turn surplus inventory into something meaningful. We are proud to call them partners.</p></div>
       </div>
       <div class="logo-float-grid">
-  <div class="lf-item"><img src="/images/stussy.webp" alt="Stussy"/></div>
+  <div class="lf-item"><img src="/images/stussy.png" alt="Stussy"/></div>
   <div class="lf-item"><img src="/images/aftco.webp" alt="AFTCO"/></div>
   <div class="lf-item"><img src="/images/bylt.webp" alt="BYLT"/></div>
   <div class="lf-item"><img src="/images/huk.webp" alt="HUK"/></div>
@@ -529,13 +529,13 @@ footer{background:#0F0F0F;border-top:1px solid rgba(255,255,255,.04)}
   <div class="lf-item"><img src="/images/feather4arrow.jpeg" alt="Feather 4 Arrow"/></div>
   <div class="lf-item"><img src="/images/trueclassic.webp" alt="True Classic"/></div>
   <div class="lf-item"><img src="/images/roark.png" alt="Roark"/></div>
-  <div class="lf-item"><img src="/images/vuori.webp" alt="Vuori" style="height:80px;max-width:220px"/></div>
+  <div class="lf-item"><img src="/images/vuori.webp" alt="Vuori" style="height:160px;max-width:440px"/></div>
   <div class="lf-item"><img src="/images/oneill.png" alt="O'Neill"/></div>
   <div class="lf-item"><img src="/images/roxy.png" alt="Roxy"/></div>
-  <div class="lf-item"><img src="/images/quiksilver.jpeg" alt="Quiksilver"/></div>
+  <div class="lf-item"><img src="/images/quicksilver.jpeg" alt="Quiksilver"/></div>
   <div class="lf-item"><img src="/images/lamade.png" alt="LA Made"/></div>
   <div class="lf-item"><img src="/images/spectra.png" alt="Spectra" style="height:192px;max-width:660px"/></div>
-  <div class="lf-item"><img src="/images/troyleee.png" alt="Troy Lee"/></div>
+  <div class="lf-item"><img src="/images/troylee.png" alt="Troy Lee"/></div>
   <div class="lf-item"><img src="/images/shelta.webp" alt="Shelta"/></div>
   <div class="lf-item"><img src="/images/kaialoha.webp" alt="Kai Aloha"/></div>
   <div class="lf-item"><img src="/images/cova.avif" alt="Cova"/></div>
@@ -828,7 +828,28 @@ function showPage(id) {
   const el = document.getElementById('nav-' + id);
   if(el) el.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
+  window.history.pushState({page: id}, '', window.location.href.split('#')[0] + '#' + id);
 }
+
+window.addEventListener('popstate', (e) => {
+  if(e.state && e.state.page) {
+    showPageDirect(e.state.page);
+  }
+});
+
+function showPageDirect(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const el = document.getElementById('nav-' + id);
+  if(el) el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+window.addEventListener('load', () => {
+  const hash = window.location.hash.slice(1);
+  if(hash) showPageDirect(hash);
+});
 function handleSubmit(e) {
   e.preventDefault();
   document.getElementById('inventoryForm').style.display='none';
