@@ -233,7 +233,8 @@ footer{background:#0F0F0F;border-top:1px solid rgba(255,255,255,.04)}
   .two-col,.context-grid,.impact-wrap,.brand-intro,.dist-grid,.events-grid,.fgrid,.donate-grid,.inv-cta,.suggest-strip,.how-header,.field-note{grid-template-columns:1fr;gap:2rem}
   .field-note.reverse{direction:ltr}
   .fn-img{height:250px}
-  .steps{grid-template-columns:1fr}.step{border:none;border-bottom:1px solid var(--rule);padding:1.5rem 0;text-align:left}.step:last-child{border-bottom:none}.step-mk{margin-bottom:1rem;margin-right:0}
+  .steps{grid-template-columns:1fr!important}.step{border:none!important;border-bottom:1px solid var(--rule)!important;padding:1.5rem 0!important;text-align:left}.step:last-child{border-bottom:none!important}.step:nth-child(2),.step:nth-child(3){padding-left:0!important}.step-mk{margin-bottom:1rem;margin-right:0;display:flex;gap:.75rem}
+  div[style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr!important;gap:1.5rem!important}
   .accept-row{grid-template-columns:1fr}
   .logo-float-grid{gap:1.25rem 2rem}
   .lf-item img{height:40px}
