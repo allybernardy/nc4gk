@@ -660,6 +660,7 @@ footer{background:#0F0F0F;border-top:1px solid rgba(255,255,255,.04)}
       <div class="form-notice"><p><strong>Please note:</strong> NC4GK is a B2B inventory partner. We work exclusively with brands and manufacturers donating new clothing in pallet or bulk quantities. For individual or used items, please connect with your local Salvation Army or thrift store. We appreciate your generosity either way.</p><p style="margin-top:1rem;font-size:.85rem">Also want to support? <a href="https://buy.stripe.com/3cI4gy5cj6Pl1bJeG54Ni00" target="_blank" style="color:var(--crimson);text-decoration:none;font-weight:500">Financial gifts enable our operations</a> and expand our reach.</p></div>
       <div id="formSuccess" class="form-success"><h3>Thank you. We will be in touch within one week.</h3><p>Your inquiry has been sent to the NC4GK team. We will review and reach out within one week.</p><div style="margin-top:2.5rem;padding:2rem;background:var(--canvas);border:1px solid var(--rule);border-radius:2px;text-align:center"><p class="body" style="margin-bottom:1rem;color:var(--ink-soft)"><strong>Also want to support the work?</strong> Financial gifts help us coordinate more distributions and reach more communities. Every $100 = 193 new items.</p><a href="https://buy.stripe.com/3cI4gy5cj6Pl1bJeG54Ni00" target="_blank" class="btn btn-crimson">Give Financially</a></div></div>
       <form id="inventoryForm" name="inventory-donation" method="POST" netlify onsubmit="handleSubmit(event)">
+        <input type="hidden" name="form-name" value="inventory-donation" />
         <div class="fgrid">
           <div class="fg"><label>Your Name *</label><input type="text" name="name" required placeholder="Jane Smith"/></div>
           <div class="fg"><label>Your Email *</label><input type="email" name="email" required placeholder="jane@brand.com"/></div>
@@ -880,9 +881,22 @@ window.addEventListener('load', () => {
 });
 function handleSubmit(e) {
   e.preventDefault();
-  document.getElementById('inventoryForm').style.display='none';
-  document.getElementById('formSuccess').style.display='block';
-  window.scrollTo({top:0,behavior:'smooth'});
+  const form = document.getElementById('inventoryForm');
+  const data = new FormData(form);
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(data).toString()
+  })
+  .then(() => {
+    form.style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  })
+  .catch((error) => {
+    alert('There was an error submitting the form. Please email info@nc4gk.org directly.');
+    console.error(error);
+  });
 }
 function handleNewsletter() {
   const email = document.getElementById('nlEmail').value;
