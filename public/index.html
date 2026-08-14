@@ -653,11 +653,12 @@ async function loadSubstackFeed() {
       const pubDate = item.querySelector('pubDate')?.textContent || '';
       const description = item.querySelector('description')?.textContent || '';
       
-      // Extract image from description - look for substackcdn URLs
+      // Extract image from description
       let imageUrl = '';
-      const substackImgMatch = description.match(/https:\/\/substackcdn\.com\/image\/fetch\/[^"<>]+/);
-      if (substackImgMatch) {
-        imageUrl = substackImgMatch[0];
+      // Look for image URLs in various formats
+      const urlMatch = description.match(/https:\/\/[^\s<>"]*substackcdn[^\s<>"]*\.(jpeg|jpg|png|webp)/i);
+      if (urlMatch) {
+        imageUrl = urlMatch[0];
       }
       
       const cleanDesc = description.replace(/<[^>]*>/g, '').substring(0, 180) + '...';
