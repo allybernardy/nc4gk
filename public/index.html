@@ -640,7 +640,7 @@ footer{background:#0F0F0F;border-top:1px solid rgba(255,255,255,.04)}
  <script>
 async function loadSubstackFeed() {
   try {
-    const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://nc4gk.substack.com/feed'));
+    const response = await fetch('/.netlify/functions/substack-feed');
     const text = await response.text();
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(text, 'text/xml');
