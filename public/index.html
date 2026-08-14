@@ -655,7 +655,7 @@ async function loadSubstackFeed() {
       
       // Extract image from description - look for substackcdn URLs
       let imageUrl = '';
-      const substackImgMatch = description.match(/https:\/\/substackcdn\.com\/image\/fetch\/[^\s"<>]*/);
+      const substackImgMatch = description.match(/https:\/\/substackcdn\.com\/image\/fetch\/[^"<>]+/);
       if (substackImgMatch) {
         imageUrl = substackImgMatch[0];
       }
