@@ -652,11 +652,18 @@ async function loadSubstackFeed() {
       const link = item.querySelector('link')?.textContent || '#';
       const pubDate = item.querySelector('pubDate')?.textContent || '';
       const description = item.querySelector('description')?.textContent || '';
+      
+      // Extract image from description
+      const imgMatch = description.match(/<img[^>]+src="([^">]+)"/);
+      const imageUrl = imgMatch ? imgMatch[1] : '';
+      
       const cleanDesc = description.replace(/<[^>]*>/g, '').substring(0, 180) + '...';
       const date = new Date(pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
       const isReverse = index % 2 === 1;
+      
       const fieldNoteHtml = `
         <div class="field-note ${isReverse ? 'reverse' : ''}">
+          ${imageUrl ? `<img src="${imageUrl}" class="fn-img" alt="Field Notes" />` : ''}
           <div class="fn-body">
             <div class="fn-tag">Field Notes</div>
             <div class="fn-date">${date}</div>
